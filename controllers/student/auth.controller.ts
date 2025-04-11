@@ -1,3 +1,5 @@
+import Student from "../../models/student.models";
+
 // ========================================================================================
 // RENDER HOME PAGE
 // ========================================================================================
@@ -39,7 +41,7 @@ export const handleLogin = (req: any, res: any) => {
 
     console.log(email, password);
 
-    ///
+    
 
     return res.render("student/home");
   } catch (error) {
@@ -55,7 +57,7 @@ export const handleLogin = (req: any, res: any) => {
 // ========================================================================================
 export const renderSignupPage = (req: any, res: any) => {
     try {
-        return res.render('student/signup')
+        return res.render('student/signup',  { msg: null })
     } catch (error) {
         console.error("Error in rendering signup page");
         return res.status(500).send("Internal Server Error")
@@ -67,12 +69,29 @@ export const renderSignupPage = (req: any, res: any) => {
 // ========================================================================================
 // This function allow the new student to create a new account.
 // ========================================================================================
-export const handleSignup = (req: any, res: any) => {
+export const handleSignup = async (req: any, res: any) => {
     try {
-        const {email, password, cpassword } = req.boy;
-
-        console.log(email, password, cpassword)
+        const { name, email, password, cpassword } = req.body;
         
+        if(!name || !email || !password || !cpassword) {
+            const msg = "All fields are required";
+            return res.render("student/signup", { msg })
+        }
+
+        if(password !== cpassword) {
+          const msg = "Password dose not match!!";
+          return res.render("student/signup", { msg })
+        }
+      
+        const existingUser = await Student.findOne({ where: { email } })
+        if (existingUser) {
+          const msg = "Email alredy in use!!"
+          return res.render("student/signup", { msg })
+        }
+
+        await Student.create({ name, email, password })
+        
+        return res.render("student/home");
     } catch (error) {
         console.error("Error in Sign up new student");
         return res.status(500).send("Internal Server Error")
