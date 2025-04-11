@@ -1,0 +1,49 @@
+<%- include('../partials/header', { title: 'Dashboard - Admin' }) %>
+
+<div class="flex flex-col items-center h-screen">
+  <h1 class="text-3xl mb-6 mt-2">Dashboard</h1>
+  <div class="flex gap-5 w-full px-52 justify-center">
+    <form action="/search" method="GET" class="flex gap-2 flex-grow">
+      <input
+        class="bg-stone-900 w-full outline-none focus:outline-cyan-700 p-2 rounded-md"
+        type="text"
+        name="search"
+        placeholder="Search students"
+        required
+      />
+      <button class="bg-cyan-700 hover:bg-cyan-800 py-2 px-4 rounded-md">
+        Search
+      </button>
+    </form>
+    <button class="bg-green-700 hover:bg-green-800 py-2 px-4 rounded-md">
+      Add new student
+    </button>
+  </div>
+  <div class="flex justify-center mt-10">
+    <table class="min-w-[1100px] bg-zinc-900 text-white rounded-md overflow-hidden">
+      <thead class="bg-neutral-800 text-left text-sm uppercase">
+        <tr>
+          <th class="py-3 px-6 border-b border-zinc-700">No</th>
+          <th class="py-3 px-6 border-b border-zinc-700">Name</th>
+          <th class="py-3 px-6 border-b border-zinc-700">Email</th>
+          <th class="py-3 px-6 border-b border-zinc-700">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hover:bg-zinc-800 transition">
+          <td class="py-3 px-6 border-b border-zinc-700">1</td>
+          <td class="py-3 px-6 border-b border-zinc-700">Ajai</td>
+          <td class="py-3 px-6 border-b border-zinc-700">ajasddsi@gmail.com</td>
+          <td class="py-3 px-6 border-b border-zinc-700 space-x-2">
+            <button class="bg-amber-600 hover:bg-amber-700 py-1 px-3 rounded-md text-sm mr-2">Edit</button> | 
+            <button class="bg-red-600 hover:bg-red-700 py-1 px-3 rounded-md text-sm">Delete</button>
+          </td>
+        </tr>
+        <!-- Add more rows here -->
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+
+<%- include('../partials/footer') %>

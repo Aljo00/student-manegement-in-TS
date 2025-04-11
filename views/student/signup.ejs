@@ -1,0 +1,45 @@
+<%- include('../partials/header', { title: "Signup - Student Management" }) %>
+
+<div class="flex items-center justify-center h-screen">
+  <div class="bg-zinc-800 w-96 h-96 rounded-md p-4">
+    <h1 class="text-2xl font-bold text-center w-full my-6">Sign up</h1>
+
+    <form action="/login" method="POST">
+      <input
+        class="bg-stone-900 w-full p-2 my-2 rounded-md outline-none focus:outline-cyan-500"
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+      <input
+        class="bg-stone-900 w-full p-2 my-2 rounded-md outline-none focus:outline-cyan-500"
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      <input
+        class="bg-stone-900 w-full p-2 my-2 rounded-md outline-none focus:outline-cyan-500"
+        type="password"
+        name="cpassword"
+        placeholder="Conform password"
+        required
+      />
+
+      <button
+        class="bg-cyan-600 w-full my-2 p-2 rounded-md hover:bg-cyan-700"
+        type="submit"
+      >
+        Signup
+      </button>
+    </form>
+
+    <p class="w-full text-center mt-4">
+      Already have an account ? <a href="/login" class="text-blue-800">Login</a>
+    </p>
+  </div>
+</div>
+
+
+<%- include('../partials/footer') %>

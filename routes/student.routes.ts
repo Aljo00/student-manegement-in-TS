@@ -1,10 +1,23 @@
-import express from "express"
+import express from "express";
 const router = express.Router();
 
+import {
+  renderHomePage,
+  renderLoginPage,
+  renderSignupPage,
+  handleLogin,
+  handleSignup,
+  handleLogout
+} from "../controllers/student/auth.controller.js";
 
-import{ renderHomePage } from "../controllers/student/auth.controller.js";
+router.get("/", renderLoginPage);
+router.post("/login", handleLogin);
 
-router.get("/", renderHomePage)
+router.get("/home", renderHomePage)
 
+router.get("/signup", renderSignupPage);
+router.post("/signup", handleSignup)
+
+router.post("/logout", handleLogout);
 
 export default router;

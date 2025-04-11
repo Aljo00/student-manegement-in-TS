@@ -1,17 +1,15 @@
-<!-- views/index.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Student Management</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body class="bg-gray-100">
-  <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold text-blue-600">Welcome to Student Management</h1>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Click Me
-    </button>
-  </div>
-</body>
-</html>
+<%- include('../partials/header', { title: "Home page" }) %>
+
+<div class="bg-stone-900 flex w-full px-40 py-4 justify-between">
+  <h1 class="text-2xl">Students</h1>
+  <form action="/logout" method="POST">
+    <button class="bg-red-600 px-6 py-1 rounded-md hover:bg-red-700 font-bold" type="submit">Logout</button>
+  </form>
+</div>
+
+<div class="flex items-center justify-center h-[calc(100vh-80px)]">
+  
+  <h1 class="text-6xl text-cyan-600 font-bold">Welcome to home page</h1>
+</div>
+
+<%- include('../partials/footer') %>
