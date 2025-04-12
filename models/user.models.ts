@@ -1,14 +1,15 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.config"
 
-const Student = sequelize.define('Student', {
+const User = sequelize.define('Student', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
     },
     password: {
         type: DataTypes.STRING,
@@ -19,8 +20,8 @@ const Student = sequelize.define('Student', {
         defaultValue: 'student',
     }
 }, {
-    tableName: 'students',
+    tableName: 'Users',
     timestamps: true
 });
 
-export default Student;
+export default User;

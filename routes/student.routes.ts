@@ -8,9 +8,10 @@ import {
   handleLogin,
   handleSignup,
   handleLogout
-} from "../controllers/student/auth.controller.js";
+} from "../controllers/student/auth.controller";
 
 router.get("/", renderLoginPage);
+router.get("/login", renderLoginPage);
 router.post("/login", handleLogin);
 
 router.get("/home", renderHomePage)

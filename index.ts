@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
+import bodyParser from "body-parser"
 import session from "express-session"
 import { startServer } from "./config/server.config.js"
 
@@ -23,7 +24,7 @@ app.use(session({
 
 app.set("view engine", "ejs");
 app.use(express.static('public'))
-app.use(express.json()); 
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true })); 
 
 app.use("/", studentRoute)
