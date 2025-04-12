@@ -22,6 +22,11 @@ app.use(session({
     }
 }));
 
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store');
+    next();
+  });
+  
 app.set("view engine", "ejs");
 app.use(express.static('public'))
 app.use(bodyParser.json());

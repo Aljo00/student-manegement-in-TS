@@ -9,16 +9,18 @@ import {
   handleSignup,
   handleLogout
 } from "../controllers/student/auth.controller";
+import { authenticate } from "../middleware/student.middleware";
 
-router.get("/", renderLoginPage);
-router.get("/login", renderLoginPage);
-router.post("/login", handleLogin);
+router.get("/", authenticate, renderHomePage);
+router.get("/login", authenticate, renderLoginPage);
+router.post("/login", authenticate, handleLogin);
 
-router.get("/home", renderHomePage)
 
-router.get("/signup", renderSignupPage);
-router.post("/signup", handleSignup)
 
-router.post("/logout", handleLogout);
+router.get("/signup",authenticate, renderSignupPage);
+router.post("/signup", authenticate, handleSignup)
+
+router.get("/home", authenticate, renderHomePage)
+router.post("/logout", authenticate, handleLogout);
 
 export default router;

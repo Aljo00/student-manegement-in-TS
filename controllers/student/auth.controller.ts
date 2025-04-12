@@ -1,13 +1,12 @@
 import bcrypt from "bcryptjs"
 import User from "../../models/user.models";
-import { Request, Response } from "express"
 
 // ========================================================================================
 // RENDER HOME PAGE
 // ========================================================================================
 // This function renders the home page so student can visit thsi page after login.
 // ========================================================================================
-export const renderHomePage = (req: Request, res: Response) => {
+export const renderHomePage = (req: any, res: any) => {
     try {
         return res.render("student/home")
     } catch (error) {
@@ -21,7 +20,7 @@ export const renderHomePage = (req: Request, res: Response) => {
 // ========================================================================================
 // This function renders the student login page for students to log in to the system.
 // ========================================================================================
-export const renderLoginPage = (req: Request, res: Response) => {
+export const renderLoginPage = (req: any, res: any) => {
   try {
     return res.render("student/login", { msg: null });
   } catch (error) {
@@ -35,7 +34,7 @@ export const renderLoginPage = (req: Request, res: Response) => {
 // ========================================================================================
 // This function renders the student signup page for students to create new account.
 // ========================================================================================
-export const renderSignupPage = (req: Request, res: Response) => {
+export const renderSignupPage = (req: any, res: any) => {
   try {
       return res.render('student/signup',  { msg: null })
   } catch (error) {
@@ -52,7 +51,7 @@ export const renderSignupPage = (req: Request, res: Response) => {
 // This function checks if the student exists in the database and allows them to access the
 // home page if they have a valid account.
 // ========================================================================================
-export const handleLogin = async (req: Request, res: Response) => {
+export const handleLogin = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
 
@@ -81,7 +80,7 @@ export const handleLogin = async (req: Request, res: Response) => {
           email: userData.email,
         };
 
-    return res.render("student/home");
+    return res.redirect("/home");
   } catch (error) {
     console.error("Error in Login student");
     return res.status(500).send("Internal Server Error");
@@ -95,7 +94,7 @@ export const handleLogin = async (req: Request, res: Response) => {
 // ========================================================================================
 // This function allow the new student to create a new account.
 // ========================================================================================
-export const handleSignup = async (req: Request, res: Response) => {
+export const handleSignup = async (req: any, res: any) => {
   try {
       const { name, email, password, cpassword } = req.body;
 
@@ -126,7 +125,7 @@ export const handleSignup = async (req: Request, res: Response) => {
         };
 
       
-      return res.render("student/home");
+      return res.redirect("/home");
   } catch (error) {
       console.error("Error in Sign up new student", error);
       return res.status(500).send("Internal Server Error")
@@ -139,11 +138,11 @@ export const handleSignup = async (req: Request, res: Response) => {
 // ========================================================================================
 // This function allow the student to log out to their account.
 // ========================================================================================
-export const handleLogout = (req: Request, res: Response) => {
+export const handleLogout = (req: any, res: any) => {
     try {
       delete (req.session as any).student;
 
-      return res.render("student/login", { msg: "Logout sucessfull!!" });
+      return res.redirect("/login");
     } catch (error) {
         console.error("Error in log out student");
         return res.status(500).send("Internal Server Error")
