@@ -1,4 +1,5 @@
 import express from "express";
+import { authenticate } from "../middleware/admin.middleware";
 import {
   handleAdminLogin,
   handleAdminLogout,
@@ -12,15 +13,15 @@ import {
 } from "../controllers/admin/student.controller";
 const router = express.Router();
 
-router.get("/admin-login", renderAdminLoginPage);
-router.post("/admin-login", handleAdminLogin)
+router.get("/admin-login", authenticate, renderAdminLoginPage);
+router.post("/admin-login", handleAdminLogin);
 
-router.get("/dashboard", renderDashboardPage);
-router.post("/add-student", handleAddNewStudent);
-router.post("/edit-student", handleEditStudent);
-router.post("/delete-student", handleDeleteStudent);
+router.get("/dashboard", authenticate, renderDashboardPage);
+router.post("/add-student", authenticate, handleAddNewStudent);
+router.post("/edit-student", authenticate, handleEditStudent);
+router.post("/delete-student", authenticate, handleDeleteStudent);
 
-router.post("/admin-logout", handleAdminLogout);
+router.post("/admin-logout", authenticate, handleAdminLogout);
 
 
 export default router;

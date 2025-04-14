@@ -18,18 +18,33 @@
         name="email"
         placeholder="Email"
       />
-      <input
-        class="bg-stone-900 w-full p-2 my-1 rounded-md outline-none focus:outline-cyan-500"
-        type="password"
-        name="password"
-        placeholder="Password"
-      />
-      <input
-        class="bg-stone-900 w-full p-2 my-1 mb-2 rounded-md outline-none focus:outline-cyan-500"
-        type="password"
-        name="cpassword"
-        placeholder="Conform password"
-      />
+      <div>
+        <input
+          class="bg-stone-900 w-full p-2 my-1 rounded-md outline-none focus:outline-cyan-500"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
+      </div>
+      <div>
+        <input
+          class="bg-stone-900 w-full p-2 my-1 mb-0 rounded-md outline-none focus:outline-cyan-500"
+          type="password"
+          id="cpassword"
+          name="cpassword"
+          placeholder="Confirm password"
+        />
+      </div>
+
+      <div class="flex items-center mt-2">
+        <input
+          type="checkbox"
+          id="showPassword"
+          class="mr-2"
+        />
+        <label for="showPassword" class="text-white">Show Password</label>
+      </div>
 
       <button
         class="bg-cyan-600 w-full my-1 p-2 rounded-md hover:bg-cyan-700"
@@ -45,5 +60,20 @@
   </div>
 </div>
 
+<script>
+  const showPasswordCheckbox = document.getElementById('showPassword');
+  const passwordField = document.getElementById('password');
+  const confirmPasswordField = document.getElementById('cpassword');
+
+  showPasswordCheckbox.addEventListener('change', function () {
+    if (showPasswordCheckbox.checked) {
+      passwordField.type = 'text';
+      confirmPasswordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+      confirmPasswordField.type = 'password';
+    }
+  });
+</script>
 
 <%- include('../partials/footer') %>

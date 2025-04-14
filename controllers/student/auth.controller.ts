@@ -60,7 +60,7 @@ export const handleLogin = async (req: any, res: any) => {
       return res.render("student/login", { msg });
     }
 
-    const existingUser = await User.findOne({ where: { email } })
+    const existingUser = await User.findOne({ where: { email: email, role: 'student' } })
     if(!existingUser) {
       const msg = "Invalid email or user not found!!";
       return res.render("student/login", { msg });

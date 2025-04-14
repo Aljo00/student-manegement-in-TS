@@ -13,13 +13,25 @@
         placeholder="Email"
         required
       />
-      <input
-        class="bg-stone-900 w-full p-2 my-2 rounded-md outline-none focus:outline-cyan-500"
-        type="password"
-        name="password"
-        placeholder="Password"
-        required
-      />
+      <div>
+        <input
+          class="bg-stone-900 w-full p-2 my-2 rounded-md outline-none focus:outline-cyan-500"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+
+      <div class="flex items-center mt-2">
+        <input
+          type="checkbox"
+          id="showPassword"
+          class="mr-2"
+        />
+        <label for="showPassword" class="text-white">Show Password</label>
+      </div>
 
       <button
         class="bg-cyan-600 w-full my-2 p-2 rounded-md hover:bg-cyan-700"
@@ -30,9 +42,22 @@
     </form>
 
     <p class="w-full text-center mt-4">
-      Dont have an account ? <a href="/signup" class="text-blue-800">Signup</a>
+      Don't have an account? <a href="/signup" class="text-blue-800">Signup</a>
     </p>
   </div>
 </div>
+
+<script>
+  const showPasswordCheckbox = document.getElementById('showPassword');
+  const passwordField = document.getElementById('password');
+
+  showPasswordCheckbox.addEventListener('change', function () {
+    if (showPasswordCheckbox.checked) {
+      passwordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+    }
+  });
+</script>
 
 <%- include('../partials/footer') %>
