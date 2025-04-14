@@ -1,0 +1,79 @@
+<%- include('../partials/header', { title: "Signup - Student Management" }) %>
+
+<div class="flex items-center justify-center h-screen">
+  <div class="bg-zinc-800 w-96 h-96 rounded-md p-4">
+    <h1 class="text-2xl font-bold text-center w-full my-1">Sign up</h1>
+    <p class="w-full text-center text-red-600"><%= msg ? msg : " " %></p>
+
+    <form action="/signup" method="POST">
+      <input
+        class="bg-stone-900 w-full p-2 my-1 mt-2 rounded-md outline-none focus:outline-cyan-500"
+        type="text"
+        name="name"
+        placeholder="Name"
+      />
+      <input
+        class="bg-stone-900 w-full p-2 my-1 rounded-md outline-none focus:outline-cyan-500"
+        type="email"
+        name="email"
+        placeholder="Email"
+      />
+      <div>
+        <input
+          class="bg-stone-900 w-full p-2 my-1 rounded-md outline-none focus:outline-cyan-500"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
+      </div>
+      <div>
+        <input
+          class="bg-stone-900 w-full p-2 my-1 mb-0 rounded-md outline-none focus:outline-cyan-500"
+          type="password"
+          id="cpassword"
+          name="cpassword"
+          placeholder="Confirm password"
+        />
+      </div>
+
+      <div class="flex items-center mt-2">
+        <input
+          type="checkbox"
+          id="showPassword"
+          class="mr-2"
+        />
+        <label for="showPassword" class="text-white">Show Password</label>
+      </div>
+
+      <button
+        class="bg-cyan-600 w-full my-1 p-2 rounded-md hover:bg-cyan-700"
+        type="submit"
+      >
+        Signup
+      </button>
+    </form>
+
+    <p class="w-full text-center mt-2">
+      Already have an account ? <a href="/" class="text-blue-800">Login</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  const showPasswordCheckbox = document.getElementById('showPassword');
+  const passwordField = document.getElementById('password');
+  const confirmPasswordField = document.getElementById('cpassword');
+
+  showPasswordCheckbox.addEventListener('change', function () {
+    if (showPasswordCheckbox.checked) {
+      passwordField.type = 'text';
+      confirmPasswordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+      confirmPasswordField.type = 'password';
+    }
+  });
+</script>
+
+<%- include('../partials/footer') %>
