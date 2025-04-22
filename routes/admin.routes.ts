@@ -1,27 +1,28 @@
 import express from "express";
-import { authenticate } from "../middleware/admin.middleware";
+import { isAdminAuthenticated } from "../middlewares/auth.middleware.js";
 import {
   handleAdminLogin,
   handleAdminLogout,
   renderAdminLoginPage,
-} from "../controllers/admin/auth.controller";
+} from "../controllers/admin/auth.controller.js";
+import { renderDashboard } from "../controllers/admin/dashboard.controller.js";
 import {
   handleAddNewStudent,
-  handleDeleteStudent,
   handleEditStudent,
-  renderDashboardPage,
-} from "../controllers/admin/student.controller";
+  handleDeleteStudent,
+} from "../controllers/admin/student.controller.js";
+
 const router = express.Router();
 
-router.get("/admin-login", authenticate, renderAdminLoginPage);
+router.get("/admin-login", renderAdminLoginPage);
 router.post("/admin-login", handleAdminLogin);
+router.get("/logout", handleAdminLogout);
 
-router.get("/dashboard", authenticate, renderDashboardPage);
-router.post("/add-student", authenticate, handleAddNewStudent);
-router.post("/edit-student", authenticate, handleEditStudent);
-router.post("/delete-student", authenticate, handleDeleteStudent);
-
-router.post("/admin-logout", authenticate, handleAdminLogout);
-
+// Protected routes
+router.use(isAdminAuthenticated);
+router.get("/dashboard", renderDashboard);
+router.post("/add-student", handleAddNewStudent);
+router.post("/edit-student", handleEditStudent);
+router.post("/delete-student", handleDeleteStudent);
 
 export default router;

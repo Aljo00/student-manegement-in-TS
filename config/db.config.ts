@@ -9,17 +9,18 @@ export const sequelize = new Sequelize(
   process.env.DB_PASS!,
   {
     host: process.env.DB_HOST,
-    dialect: "mysql",
+    dialect: "postgres",
     logging: false,
   }
 );
+
 export const connectDB = async () => {
-    try {
-      await sequelize.authenticate();
-      console.log("MySQL connection has been established successfully.");
-      await sequelize.sync({ alter: true }); 
-    } catch (error) {
-      console.error("Unable to connect to the MySQL database:", error);
-      process.exit(1); 
-    }
-  };
+  try {
+    await sequelize.authenticate();
+    console.log("PostgreSQL connection has been established successfully.");
+    await sequelize.sync({ alter: true }); 
+  } catch (error) {
+    console.error("Unable to connect to the PostgreSQL database:", error);
+    process.exit(1); 
+  }
+};

@@ -3,32 +3,6 @@ import bcrypt from "bcryptjs"
 import User from "../../models/user.models";
 
 // ========================================================================================
-// RENDER DASHBOARD PAGE
-// ========================================================================================
-// This function reder the dashbord page.
-// ========================================================================================
-export const renderDashboardPage = async (req: any, res: any) => {
-    try {
-        const search = req.query.search || "";
-
-        const users = await User.findAll({
-          where: {
-            role: 'student',
-            name: {
-              [Op.like]: `%${search}%`,
-            },
-          },
-          order: [['createdAt', 'DESC']],
-        });
-          
-        return res.render('admin/dashboard', { users });
-    } catch (error) {
-        console.error("Error rendering dashboard page");
-        return res.status(500).send("Internal Server Error")
-    }
-}
-
-// ========================================================================================
 // ADD NEW STUDENT
 // ========================================================================================
 // This function reder the dashbord page.
